@@ -13,12 +13,25 @@ import { combineReducers, createStore } from 'redux'
  * 根据不同的约定（如方法映射）来判断，只要适用你的项目即可。
  */
 // 这是reducer
+let init_state = [
+  { name: '张三', sex: '男', age: 18 },
+  { name: '李四', sex: '男', age: 20 }
+]
 function counter(state = 0, action) {
   switch (action.type) {
     case 'INCREMENT':
       return state + 1
     case 'DECREMENT':
       return state - 1
+    default:
+      return state
+  }
+}
+function employee(state = init_state, action) {
+  switch (action.type) {
+    case 'ADD_EMPLOYEE':
+      return [...state, action.new_employ]
+
     default:
       return state
   }
@@ -56,7 +69,7 @@ function todos(state = [], action) {
   }
 }
 
-let reducer = combineReducers({ counter, visibilityFilter, todos })
+let reducer = combineReducers({ counter, visibilityFilter, todos, employee })
 let store = createStore(
   reducer,
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
@@ -73,9 +86,8 @@ store.subscribe(() => console.log(store.getState()))
 
 // 改变内部 state 惟一方法是 dispatch 一个 action。
 // action 可以被序列化，用日记记录和储存下来，后期还可以以回放的方式执行
-store.dispatch({ type: 'INCREMENT' })
-// 1
-store.dispatch({ type: 'INCREMENT' })
-// 2
-store.dispatch({ type: 'DECREMENT' })
-console.log(111)
+store.dispatch({
+  type: 'ADD_EMPLOYEE',
+  new_employ: { name: '王', sex: '女', age: '18' }
+})
+export default store

@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 import './store/store.js'
 import LogIn from './views/logIn.js'
 import './App.scss'
+import Information from './views/information.js'
 // Each logical "route" has two components, one for
 // the sidebar and one for the main area. We want to
 // render both of them in different places when the
@@ -22,7 +23,7 @@ const routes = [
   {
     path: '/shoelaces',
     // sidebar: () => <div>shoelaces!xxxx</div>,
-    main: () => <h2>Shoelaces</h2>
+    main: () => <Information />
   }
 ]
 
@@ -51,7 +52,7 @@ function App() {
             </li>
             <li>
               <Link to="/shoelaces" className="font">
-                个人信息
+                员工信息
               </Link>
             </li>
           </ul>
