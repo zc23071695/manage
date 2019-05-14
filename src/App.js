@@ -1,6 +1,8 @@
 import React from 'react'
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
-
+import './store/store.js'
+import LogIn from './views/logIn.js'
+import './App.scss'
 // Each logical "route" has two components, one for
 // the sidebar and one for the main area. We want to
 // render both of them in different places when the
@@ -9,17 +11,17 @@ const routes = [
   {
     path: '/',
     exact: true,
-    sidebar: () => <div>home!</div>,
+    // sidebar: () => <div>home!</div>,
     main: () => <h2>Home</h2>
   },
   {
     path: '/bubblegum',
-    sidebar: () => <div>bubblegum!</div>,
-    main: () => <h2>Bubblegum</h2>
+    // sidebar: () => <div>bubblegum!</div>,
+    main: () => <LogIn />
   },
   {
     path: '/shoelaces',
-    sidebar: () => <div>shoelaces!</div>,
+    // sidebar: () => <div>shoelaces!xxxx</div>,
     main: () => <h2>Shoelaces</h2>
   }
 ]
@@ -27,6 +29,7 @@ const routes = [
 function App() {
   return (
     <Router>
+      <div className="top">后台管理系统</div>
       <div style={{ display: 'flex' }}>
         <div
           style={{
@@ -37,13 +40,19 @@ function App() {
         >
           <ul style={{ listStyleType: 'none', padding: 0 }}>
             <li>
-              <Link to="/">Home</Link>
+              <Link to="/" className="font">
+                注册
+              </Link>
             </li>
             <li>
-              <Link to="/bubblegum">Bubblegum</Link>
+              <Link to="/bubblegum" className="font">
+                登录
+              </Link>
             </li>
             <li>
-              <Link to="/shoelaces">Shoelaces</Link>
+              <Link to="/shoelaces" className="font">
+                个人信息
+              </Link>
             </li>
           </ul>
 
